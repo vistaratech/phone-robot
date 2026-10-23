@@ -1,0 +1,34 @@
+# --- Network -------------------------------------------------------------
+host: 0.0.0.0
+port: 8765
+control_hz: 100        # servo write loop
+feedback_hz: 50        # telemetry sent back to the phone
+
+# --- Dynamixel bus (U2D2 -> TTL) -----------------------------------------
+serial_port: /dev/ttyUSB0
+baudrate: 1000000      # set servos to 1 Mbps with Dynamixel Wizard first
+protocol: 2.0
+
+# --- Safety ---------------------------------------------------------------
+max_joint_speed: 4.0   # rad/s, per-joint rate limit on goal changes
+stale_hold_s: 0.25     # no command for this long -> hold current pose
+stale_torque_off_s: 0  # >0: disable torque after this many seconds of silence
+
+# --- Joints ----------------------------------------------------------------
+# !! IDs / sign / offset / limits are PLACEHOLDERS. Calibrate to YOUR build. !!
+# order = index in the 13-element command vector sent by the phone
+# offset (rad): joint angle that corresponds to servo tick 2048
+joints:
+  - {name: torso_yaw,        id: 1,  sign:  1, offset: 0.0, min: -1.0, max: 1.0}
+  - {name: l_hip_yaw,        id: 2,  sign:  1, offset: 0.0, min: -0.8, max: 0.8}
+  - {name: l_hip_roll,       id: 3,  sign:  1, offset: 0.0, min: -0.6, max: 0.6}
+  - {name: l_hip_pitch,      id: 4,  sign:  1, offset: 0.0, min: -1.5, max: 1.5}
+  - {name: l_knee,           id: 5,  sign:  1, offset: 0.0, min:  0.0, max: 2.4}
+  - {name: l_ankle_pitch,    id: 6,  sign:  1, offset: 0.0, min: -1.0, max: 1.0}
+  - {name: l_ankle_roll,     id: 7,  sign:  1, offset: 0.0, min: -0.6, max: 0.6}
+  - {name: r_hip_yaw,        id: 8,  sign:  1, offset: 0.0, min: -0.8, max: 0.8}
+  - {name: r_hip_roll,       id: 9,  sign:  1, offset: 0.0, min: -0.6, max: 0.6}
+  - {name: r_hip_pitch,      id: 10, sign:  1, offset: 0.0, min: -1.5, max: 1.5}
+  - {name: r_knee,           id: 11, sign:  1, offset: 0.0, min:  0.0, max: 2.4}
+  - {name: r_ankle_pitch,    id: 12, sign:  1, offset: 0.0, min: -1.0, max: 1.0}
+  - {name: r_ankle_roll,     id: 13, sign:  1, offset: 0.0, min: -0.6, max: 0.6}

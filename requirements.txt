@@ -1,0 +1,6 @@
+websockets>=12.0
+pyyaml>=6.0
+dynamixel-sdk>=3.7.31   # only needed on the real robot (not for --mock)
+pygame>=2.5             # optional: wireless gamepad relay
+onnxruntime>=1.17       # optional: run an exported locomotion policy
+numpy>=1.24
